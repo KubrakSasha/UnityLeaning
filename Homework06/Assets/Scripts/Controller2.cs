@@ -42,34 +42,41 @@ public class Controller2 : MonoBehaviour
         {            
             vertical = Input.GetAxis("Vertical");
             horizontal = Input.GetAxis("Horizontal");
-        }
-        
-        //Jumping
-        if (Input.GetButtonDown("Jump") && !isJumping && !isDead && !isSpawn)
-        {
-            isJumping = true;
-            Animator.SetTrigger("Jump");
-            speedY += jumpSpeed;            
-        }
-        if (!Controllerr.isGrounded)
-        {
-            speedY += gravity * Time.deltaTime;            
-        }
-        else if (speedY < 0.0f)
-        {
-            speedY = 0.0f;            
-        }
-        Animator.SetFloat("SpeedY", speedY / jumpSpeed);
-        if (isJumping && speedY < 0.0f)
-        {
-            RaycastHit hit;
-            if (Physics.Raycast(transform.position, Vector3.down, out hit, 1f, LayerMask.GetMask("Default")))
+
+            //Jumping
+            if (Input.GetButtonDown("Jump") && !isJumping)
             {
-                isJumping = false;
-                Animator.SetTrigger("Land");                
+                isJumping = true;
+                Animator.SetTrigger("Jump");
+                speedY += jumpSpeed;
+            }
+            if (!Controllerr.isGrounded)
+            {
+                speedY += gravity * Time.deltaTime;
+            }
+            else if (speedY < 0.0f)
+            {
+                speedY = 0.0f;
+            }
+            Animator.SetFloat("SpeedY", speedY / jumpSpeed);
+            if (isJumping && speedY < 0.0f)
+            {
+                RaycastHit hit;
+                if (Physics.Raycast(transform.position, Vector3.down, out hit, 1f, LayerMask.GetMask("Default")))
+                {
+                    isJumping = false;
+                    Animator.SetTrigger("Land");
+                }
+            }
+
+            //Attacking
+            if (Input.GetMouseButtonDown(0))
+            {
+                //isAttacking = true;
+                Animator.SetTrigger("Attacking");
+                Animator.SetInteger("Attack", Random.Range(0, 4));
             }
         }
-
         //Moving
         isSprint = Input.GetKey(KeyCode.LeftShift);
         Vector3 movement = new Vector3(horizontal, 0.0f, vertical);
@@ -92,19 +99,11 @@ public class Controller2 : MonoBehaviour
         Controllerr.transform.rotation = Quaternion.Lerp(currentRotation, targetRotation, rotationSpeed);
 
         //Death
-        if (Input.GetKeyDown(KeyCode.C))
+        if (Input.GetKeyDown(KeyCode.C) && !isDead)
         {
             Animator.SetTrigger("Death");
             isDead = true;
-        }
-
-        //Attack
-        if (Input.GetMouseButtonDown(0))
-        {
-            //isAttacking = true;
-            Animator.SetTrigger("Attacking");
-            Animator.SetInteger("Attack", Random.Range(0, 4));            
-        }
+        }        
     }    
     void StartSpawn() 
     {
