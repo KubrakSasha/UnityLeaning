@@ -28,11 +28,11 @@ public class LevelManager : MonoBehaviour
         GameObject player =  Instantiate(playerPrefab, respawnPoint.position, Quaternion.identity);
         cam.Follow = player.transform;
         //Instantiate(enemyPrefabs, enemypositions, Quaternion.identity);
-        for (int i = 0; i < enemyPrefabs.Length; i++)
-        {
-            Instantiate(enemyPrefabs[i], enemypositions[i], Quaternion.identity);
-            enemyPrefabs[i].gameObject.GetComponent<BoxCollider2D>().enabled = true;
-        }
+        //for (int i = 0; i < enemyPrefabs.Length; i++)
+        //{
+        //    Instantiate(enemyPrefabs[i], enemypositions[i], Quaternion.identity);
+        //    enemyPrefabs[i].gameObject.GetComponent<BoxCollider2D>().enabled = true;
+        //}
         
 
     }

@@ -9,13 +9,13 @@ public class PlayerDeath : MonoBehaviour
         {
             Destroy(gameObject);
             
-            for (int i = 0; i < enemiesPrefab.Length; i++)
-            {
-                if (enemiesPrefab[i] is not null)
-                {
-                    Destroy(enemiesPrefab[i]);
-                }
-            }
+            //for (int i = 0; i < enemiesPrefab.Length; i++)
+            //{
+            //    if (enemiesPrefab[i] is not null)
+            //    {
+            //        Destroy(enemiesPrefab[i]);
+            //    }
+            //}
             LevelManager.instance.Respawn();
         }
     }
