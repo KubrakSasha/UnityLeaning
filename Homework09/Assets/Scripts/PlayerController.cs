@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] float speed = 1f;
+    [SerializeField] float speed = 1f; 
     [SerializeField] float jumpForce = 5f;
     Animator animator;    
     Rigidbody2D rb;
@@ -22,8 +22,7 @@ public class PlayerController : MonoBehaviour
         transform.position += new Vector3 (movement, 0, 0) * speed * Time.deltaTime;
         animator.SetBool("Running", movement != 0);
         sr.flipX = movement < 0 ? true : false;
-
-        //if (Input.GetKeyDown(KeyCode.Space) && Mathf.Abs(rb.velocity.y) < 0.05f)
+        
         if (Input.GetKeyDown(KeyCode.Space) && grounded)
         {
             Jump();
@@ -41,16 +40,16 @@ public class PlayerController : MonoBehaviour
         animator.SetTrigger("Jump");
         grounded = false;
     }
+    void Attack()
+    {
+        animator.SetTrigger("Attack");
+
+    }
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Ground")
         {
             grounded = true;
         }        
-    }
-    void Attack() 
-    {
-        animator.SetTrigger("Attack");
-        //animator.SetBool("Attackin",Input.GetMouseButtonDown (0));
-    }
+    }    
 }

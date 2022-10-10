@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 4443439884290415234}
   m_Layer: 0
   m_Name: Enemy
-  m_TagString: Untagged
+  m_TagString: Respawn
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -146,6 +146,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d814512633fb20346b1d3bab86c94b1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 3123568550429882810, guid: aca7cf8ab4d2e0748960754ee89aaa44, type: 3}
   speed: 2
-  agroDistance: 4
+  enemyPrefab: {fileID: 0}

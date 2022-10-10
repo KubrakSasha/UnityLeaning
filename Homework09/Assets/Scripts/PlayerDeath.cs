@@ -2,11 +2,12 @@ using UnityEngine;
 
 public class PlayerDeath : MonoBehaviour
 {
-    [SerializeField] GameObject[] enemiesPrefab;   
+    
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Respawn")) 
         {
+            EventManager.OnPlayerDied();
             Destroy(gameObject);
             
             //for (int i = 0; i < enemiesPrefab.Length; i++)

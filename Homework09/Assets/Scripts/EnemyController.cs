@@ -4,51 +4,32 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
-    Rigidbody2D rb;
-
-    [SerializeField] Transform player;
+    Rigidbody2D rb;   
     [SerializeField] float speed;
-    [SerializeField] float agroDistance;
-    Vector2 path;
-    Vector2 path2;
-
-
-
-    // Start is called before the first frame update
+    //[SerializeField] GameObject enemyPrefab;
+    
+    Vector2 endPosition;
+    Vector2 startPosition;   
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        path2 = rb.transform.position;
-        path = path2 + new Vector2(5, 0);
-    }
-
-    // Update is called once per frame
+        startPosition = rb.transform.position;
+        endPosition = startPosition + new Vector2(5, 0);
+        EventManager.PlayerDied += OnDestroy;
+        
+    }   
     void Update()
     {
-        transform.position = Vector2.Lerp(path2, path, Mathf.PingPong(Time.time,1));
-        //float distanceToPlayer = Vector2.Distance(transform.position, player.position);
-        //if (distanceToPlayer < agroDistance)
-        //{
-        //    StartHunting();
-        //}
-        //else
-        //{
-        //    StopHunting();
-        //}
+        transform.position = Vector2.Lerp(startPosition, endPosition, Mathf.PingPong(Time.time,1));       
     }
-    void StartHunting() 
+    private void OnDestroy()
     {
-        if (player.position.x < transform.position.x)
-        {
-            rb.velocity = new Vector2(-speed, 0);
-        }
-        else if (player.position.x > transform.position.x)
-        {
-            rb.velocity = new Vector2(speed, 0);
-        }
+        Destroy(gameObject);
+        EventManager.PlayerDied -= OnDestroy;
     }
-    void StopHunting()
-    {
-        rb.velocity = Vector2.zero;
-    }
+
+    //private void SpawnEnemies() 
+    //{
+    //    Instantiate(enemyPrefab, startPosition, Quaternion.identity);
+    //}
 }

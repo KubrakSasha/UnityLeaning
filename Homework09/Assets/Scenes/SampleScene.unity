@@ -721,7 +721,7 @@ GameObject:
   - component: {fileID: 303347562}
   - component: {fileID: 303347561}
   - component: {fileID: 303347563}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Tilemap
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -10712,18 +10712,13 @@ MonoBehaviour:
   respawnPoint: {fileID: 2062368040}
   playerPrefab: {fileID: 3123568550429882809, guid: aca7cf8ab4d2e0748960754ee89aaa44, type: 3}
   cam: {fileID: 397299999}
-  enemyPrefabs:
+  enemies:
   - {fileID: 1638242269}
-  - {fileID: 463948131}
-  - {fileID: 1905985797}
-  - {fileID: 2142150044}
   - {fileID: 1075273199}
-  enemypositions:
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
+  - {fileID: 2142150044}
+  - {fileID: 1905985797}
+  - {fileID: 463948131}
+  enemyPrefab: {fileID: 4443439884290415233, guid: 9bed867e6f276a44cb44860f3ad48af3, type: 3}
 --- !u!4 &1630590942
 Transform:
   m_ObjectHideFlags: 0
@@ -12348,6 +12343,10 @@ PrefabInstance:
       propertyPath: respawn
       value: 
       objectReference: {fileID: 2062368040}
+    - target: {fileID: 3123568550429882805, guid: aca7cf8ab4d2e0748960754ee89aaa44, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3123568550429882809, guid: aca7cf8ab4d2e0748960754ee89aaa44, type: 3}
       propertyPath: m_Name
       value: Player
