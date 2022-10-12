@@ -50,6 +50,6 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.tag == "Ground")
         {
             grounded = true;
-        }        
-    }    
+        }
+    }
 }

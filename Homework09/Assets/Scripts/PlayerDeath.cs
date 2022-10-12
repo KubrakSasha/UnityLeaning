@@ -17,7 +17,7 @@ public class PlayerDeath : MonoBehaviour
             //        Destroy(enemiesPrefab[i]);
             //    }
             //}
-            LevelManager.instance.Respawn();
+            //LevelManager.instance.Respawn();
         }
     }
 }

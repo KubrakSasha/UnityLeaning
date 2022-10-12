@@ -11,11 +11,13 @@ public class LevelManager : MonoBehaviour
     [SerializeField] GameObject[] enemies;
     [SerializeField] GameObject enemyPrefab;
     Vector3[] enemypositions;
+    [SerializeField] Canvas canvas;
 
     private void Awake()
     {
 
-        instance = this;        
+        instance = this;
+       
     }
     private void Start()
     {
@@ -25,15 +27,19 @@ public class LevelManager : MonoBehaviour
         {
             enemypositions[j] = enemies[i].transform.position;
         }
+        EventManager.Restart += Respawn;
 
     }
     public void Respawn() 
     {
+
         GameObject player =  Instantiate(playerPrefab, respawnPoint.position, Quaternion.identity);
         cam.Follow = player.transform;
         for (int i = 0; i < enemypositions.Length; i++)
         {
             Instantiate(enemyPrefab, enemypositions[i], Quaternion.identity);            
         }
+        canvas.gameObject.SetActive(false);
+
     }
 }
