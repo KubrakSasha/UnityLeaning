@@ -15,9 +15,7 @@ public class LevelManager : MonoBehaviour
 
     private void Awake()
     {
-
-        instance = this;
-       
+        instance = this;       
     }
     private void Start()
     {
@@ -29,7 +27,7 @@ public class LevelManager : MonoBehaviour
         }
         EventManager.Restart += Respawn;
 
-    }
+    }    
     public void Respawn() 
     {
 

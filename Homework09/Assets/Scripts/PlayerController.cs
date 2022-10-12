@@ -43,7 +43,6 @@ public class PlayerController : MonoBehaviour
     void Attack()
     {
         animator.SetTrigger("Attack");
-
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {

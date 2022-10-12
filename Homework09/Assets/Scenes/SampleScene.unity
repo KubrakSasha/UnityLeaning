@@ -12861,6 +12861,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5111753036668280420, guid: aca7cf8ab4d2e0748960754ee89aaa44, type: 3}
+      propertyPath: cam
+      value: 
+      objectReference: {fileID: 397299999}
+    - target: {fileID: 5111753036668280420, guid: aca7cf8ab4d2e0748960754ee89aaa44, type: 3}
       propertyPath: enemiesPrefab.Array.size
       value: 5
       objectReference: {fileID: 0}
