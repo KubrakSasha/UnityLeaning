@@ -1241,6 +1241,7 @@ GameObject:
   - component: {fileID: 354125655}
   - component: {fileID: 354125654}
   - component: {fileID: 354125653}
+  - component: {fileID: 354125657}
   m_Layer: 0
   m_Name: BallTrigger
   m_TagString: BallTag
@@ -1326,6 +1327,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &354125657
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 354125651}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8deb36c0cac1504aba74a19f039ffcb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ammoprefab: {fileID: 2064327225874609225, guid: 517f5a03dca43614ab58ddfa76a1746c, type: 3}
 --- !u!1 &369540082 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: c016e8738f5348f4aaa749b0eaeb54a2, type: 3}
@@ -1630,6 +1644,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 502018572}
+  - component: {fileID: 502018573}
   m_Layer: 0
   m_Name: Weapon
   m_TagString: Untagged
@@ -1652,6 +1667,22 @@ Transform:
   m_Father: {fileID: 1056874813}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!54 &502018573
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 502018571}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1001 &527634160
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1847,6 +1878,7 @@ GameObject:
   - component: {fileID: 582806438}
   - component: {fileID: 582806437}
   - component: {fileID: 582806436}
+  - component: {fileID: 582806440}
   m_Layer: 0
   m_Name: BulletTrigger
   m_TagString: BulletTag
@@ -1932,6 +1964,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &582806440
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 582806435}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8deb36c0cac1504aba74a19f039ffcb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ammoprefab: {fileID: -7418757157074279577, guid: 303274671cdf934429ba0a157dbaf897, type: 3}
 --- !u!1001 &627154734
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2515,6 +2560,7 @@ GameObject:
   - component: {fileID: 757377267}
   - component: {fileID: 757377266}
   - component: {fileID: 757377265}
+  - component: {fileID: 757377269}
   m_Layer: 0
   m_Name: GrenadeTrigger
   m_TagString: GrenadeTag
@@ -2600,6 +2646,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &757377269
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 757377264}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8deb36c0cac1504aba74a19f039ffcb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ammoprefab: {fileID: 5956177623161047917, guid: 9560cfe478da148459867aa2c651f985, type: 3}
 --- !u!1 &769668684 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: e66f363ae1bac9f468ec3091d5550c9b, type: 3}
@@ -3709,14 +3768,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db56a947e3000544fb684ce023089941, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 535565435903191016, guid: 303274671cdf934429ba0a157dbaf897, type: 3}
-  grenadePrefab: {fileID: 3742748739083067511, guid: 9560cfe478da148459867aa2c651f985, type: 3}
-  ballPrefab: {fileID: 4313727499069257320, guid: 517f5a03dca43614ab58ddfa76a1746c, type: 3}
   weapon: {fileID: 502018571}
-  bulletVelocity: 50
-  ballVelocity: 20
-  throwForce: 10
-  forceMode: 0
+  ammo: {fileID: 0}
 --- !u!1 &1062177003 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: e66f363ae1bac9f468ec3091d5550c9b, type: 3}
