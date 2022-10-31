@@ -4,13 +4,19 @@ using UnityEngine.AI;
 public class LoweSpeedTrigger : MonoBehaviour
 {
     [SerializeField] NavMeshAgent agent;
+    
     private void OnTriggerEnter(Collider other)
     {
-        agent.speed = 1;
-        Debug.Log(agent.speed);
+        SetSpeedCoeff(0.5f);
     }
     private void OnTriggerExit(Collider other)
     {
-        agent.speed = 3.5f;//уг
+        SetSpeedCoeff(2f);
     }
-}
+
+    float SetSpeedCoeff(float coef)
+    {
+        agent.speed *= coef;
+        return agent.speed;
+    }
+} 

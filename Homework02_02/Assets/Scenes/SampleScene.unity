@@ -421,7 +421,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc1ac9e82411a7341915ca1c3b3737a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  destination: 1
+  direction: 1
 --- !u!65 &191123626
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -549,7 +549,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc1ac9e82411a7341915ca1c3b3737a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  destination: -1
+  direction: -1
 --- !u!65 &247619131
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -968,7 +968,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc1ac9e82411a7341915ca1c3b3737a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  destination: 1
+  direction: 1
 --- !u!65 &405187142
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2786,7 +2786,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc1ac9e82411a7341915ca1c3b3737a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  destination: -1
+  direction: -1
 --- !u!208 &1327277441
 NavMeshObstacle:
   m_ObjectHideFlags: 0
