@@ -127,4 +127,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3ae6597613155048a44acf7cb30a58b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0
+  bounceEffectPrefab: {fileID: 1337198075554910, guid: 25c7aa9ad705fe143a4d71c1c8deb7d4,
+    type: 3}

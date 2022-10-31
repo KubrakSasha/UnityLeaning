@@ -1,24 +1,20 @@
 using UnityEngine;
 
-public class Bullet : Ammo{
-    
+public class Bullet : Ammo
+{
+    [SerializeField] GameObject bulletCollisionPrefab;
+    [SerializeField] GameObject bulletTrailPrefab;
     float velocity = 30f;
-    public override void Fire() 
-    {
-        this.gameObject.GetComponent<Rigidbody>().AddForce(direction * velocity, ForceMode.Impulse);
-    }
-    private void OnCollisionEnter(Collision collision)  
-    {
-        Destroy(this.gameObject);
-    }
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
+    public override void Fire(Vector3 robotShootDirection)
     {
-        
+        Instantiate(bulletTrailPrefab, transform.position, Quaternion.identity, this.transform);
+        this.gameObject.GetComponent<Rigidbody>().AddForce(robotShootDirection * velocity, ForceMode.Impulse);
+    }
+    private void OnCollisionEnter(Collision collision)
+    {
+        var effect = Instantiate(bulletCollisionPrefab, collision.contacts[0].point, Quaternion.identity) as GameObject;
+        Destroy(this.gameObject);
+        Destroy(effect, 0.5f);// c GameObject работает, а с ParticleSystem не работает
     }
 }
