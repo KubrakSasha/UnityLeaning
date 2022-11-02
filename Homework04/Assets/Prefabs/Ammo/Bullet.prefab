@@ -132,7 +132,7 @@ MonoBehaviour:
     type: 3}
   bulletTrailPrefab: {fileID: 1828176872806910, guid: 64891a0eb28db934898420d80ca07cb3,
     type: 3}
-  bulletHall: {fileID: 1878292946747772167, guid: 5f59bd54b47ce8f4ebffadb670f10271,
+  bulletMarkPrefab: {fileID: 1878292946747772167, guid: 5f59bd54b47ce8f4ebffadb670f10271,
     type: 3}
 --- !u!96 &7605435303300877167
 TrailRenderer:
