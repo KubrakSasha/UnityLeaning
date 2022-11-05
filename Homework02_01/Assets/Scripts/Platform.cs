@@ -1,11 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public static class Platform 
-{
-    //int number = 1;
-    // Start is called before the first frame update
+{  
     public static GameObject CreatPlatform(float length, float height, float width) 
     {
         GameObject platform = new GameObject("platform",typeof(MeshFilter),typeof(MeshRenderer));
@@ -14,7 +10,7 @@ public static class Platform
         mesh.triangles = GenerateTriangles();
         mesh.RecalculateNormals();
         Material material = platform.GetComponent<MeshRenderer>().material;
-        material.color = Color.red;
+        material.color = GetRandomColor();
         return platform;
     }
     public static Vector3[] GenerateVertices(float length, float height, float width)
@@ -40,5 +36,9 @@ public static class Platform
             1,6,2, 1,5,6,
             0,3,7, 0,7,4,
             5,7,6, 4,7,5};
+    }
+    public static Color GetRandomColor()
+    {
+        return new Color(Random.Range(0f, 1f), Random.Range(0f, 1f), Random.Range(0f, 1f));
     }
 }

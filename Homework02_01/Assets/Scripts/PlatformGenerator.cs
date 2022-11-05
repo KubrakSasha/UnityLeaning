@@ -1,38 +1,41 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlatformGenerator : MonoBehaviour
-{    
-    public List<GameObject> platforms = new List<GameObject>();
-    Vector3 generator = new Vector3(0, 0, -4);
+{
+
+    Camera cam;
+    List<GameObject> platforms = new List<GameObject>();
+    Vector3 platformGeneratorStarPosition = new Vector3(0, 0, -2);
     float speed = 0.5f;
     GameObject currentPlatform;
     GameObject lastPlatform;
-    int i = 0;
+    int level = 0;
     float offset;
-    float zSize;
-    
+    float zSize;    
 
     private void Start()
     {        
         var startPlatform = Platform.CreatPlatform(1,1,1);
         lastPlatform = startPlatform;
         CreatFirstPlatform();
+        cam = Camera.main;
     }
 
     void Update()
     {        
-        if (Input.GetMouseButtonDown(1) && 
-            (currentPlatform.transform.position.z - lastPlatform.transform.position.z < 1 && currentPlatform.transform.position.z - lastPlatform.transform.position.z > -1))
+        if (Input.GetMouseButtonDown(1))            
         {
             StopAndCutPlatform();
+            if (Mathf.Abs(offset) >= lastPlatform.transform.localScale.z)
+            {
+                SceneManager.LoadScene(0);
+            }
+            lastPlatform = currentPlatform;
             CreatNewPlatform(zSize);
-        }
-        //if (lastPlatform.transform.localScale.z <= Mathf.Abs(offset))
-        //    Debug.LogError("StoppppGame");
+            MoveCamera();
+        }        
         currentPlatform.transform.position += Vector3.forward * Time.deltaTime* speed;        
     }
 
@@ -41,8 +44,8 @@ public class PlatformGenerator : MonoBehaviour
         GameObject plat = Platform.CreatPlatform(1, 0.1f, 1);
         plat.transform.localScale = new Vector3(plat.transform.localScale.x, transform.localScale.y , z);       
         platforms.Add(plat);
-        currentPlatform = platforms[i];
-        transform.position = generator + new Vector3(0,lastPlatform.transform.position.y,0) + new Vector3 (0, 0.1f, 0);
+        currentPlatform = platforms[level];
+        transform.position = platformGeneratorStarPosition + new Vector3(0,lastPlatform.transform.position.y,0) + new Vector3 (0, 0.1f, 0);
         currentPlatform.transform.position = transform.position;
     }
 
@@ -61,17 +64,21 @@ public class PlatformGenerator : MonoBehaviour
         fallingPlatform.transform.localScale = new Vector3(fallingPlatform.transform.localScale.x, fallingPlatform.transform.localScale.y, offset);
         fallingPlatform.transform.position = new Vector3(currentPlatform.transform.position.x, currentPlatform.transform.position.y, currentPlatform.transform.position.z - direction * (zSize/2 + Mathf.Abs(offset / 2)));
         fallingPlatform.AddComponent<Rigidbody>().useGravity = true;
-
-        lastPlatform = currentPlatform;
+        
         speed++;
-        i++;        
+        level++;        
     }
     private void CreatFirstPlatform()
     {
         GameObject plat = Platform.CreatPlatform(1, 0.1f, 1);        
         platforms.Add(plat);
-        currentPlatform = platforms[i];
-        transform.position = generator + new Vector3(0,0.55f,0);
+        currentPlatform = platforms[level];
+        transform.position = platformGeneratorStarPosition + new Vector3(0,0.55f,0);
         currentPlatform.transform.position = transform.position;
     }
+    void MoveCamera() 
+    {
+        cam.transform.position += new Vector3(0, 0.05f, 0);
+    }
+
 }
