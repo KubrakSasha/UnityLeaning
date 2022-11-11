@@ -1,29 +1,33 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Playables;
+using UnityEngine.Timeline;
 
 public class Controller2 : MonoBehaviour
-{
+{    
     [SerializeField] float movementSpeed = 2.0f;
     [SerializeField] float sprintSpeed = 5.0f;
     [SerializeField] float rotationSpeed = 0.2f;
     [SerializeField] float animationSpeed = 0.2f;
-    float jumpSpeed = 7.0f;
+    [SerializeField] PlayableDirector clip;
+    [SerializeField] TimeManager timeManager;
+    [SerializeField] List<Rigidbody> bodyParts;    
 
     CharacterController controllerr;
     Animator animator;
     Camera characterCamera;
+
     float rotationAngle = 0.0f;
     float targetAnimationSpeed = 0.0f;
-
-    bool isSprint = false;
+    float jumpSpeed = 7.0f;
     float speedY = 0.0f;
     float gravity = -9.81f;
-    bool isJumping = false;
-    bool isRun = false;
+
+    bool isJumping = false;    
     bool isDead = false;
-    //bool isAttacking= false;
-    bool isSpawn;
+    bool isSprint = false;
+
     float vertical;
     float horizontal;
 
@@ -34,11 +38,11 @@ public class Controller2 : MonoBehaviour
 
     private void Start()
     {        
-        Animator.SetTrigger("Spawn");
+        //Animator.SetTrigger("Spawn");
     }
     void Update()
     {        
-        if (!isDead && !isSpawn)
+        if (!isDead)
         {            
             vertical = Input.GetAxis("Vertical");
             horizontal = Input.GetAxis("Horizontal");
@@ -100,17 +104,22 @@ public class Controller2 : MonoBehaviour
 
         //Death
         if (Input.GetKeyDown(KeyCode.C) && !isDead)
-        {
-            Animator.SetTrigger("Death");
-            isDead = true;
+        {           
+            Die();            
+            //Animator.SetTrigger("Death");
         }        
+    }        
+    public void Die() 
+    {        
+        Animator.enabled = false;
+        movementSpeed = 0.0f;
+        rotationSpeed = 0.0f;        
+        foreach (var item in bodyParts)
+        {
+            item.isKinematic = false;
+        }
+        isDead = true;
+        //timeManager.DoSlowmotion();
+        clip.Play();
     }    
-    void StartSpawn() 
-    {
-        isSpawn = true;
-    }
-    void EndSpawn()
-    {
-        isSpawn = false;
-    }
 }
