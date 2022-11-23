@@ -9,14 +9,16 @@ public class Grenades : Ammo
     float radius = 5f;
     float explosionRadius = 5f;
     float explosionForce = 1000f;
+    AmmoType type = AmmoType.grenade;
 
     public override void Fire(Vector3 robotShootDirection)
     {
-        this.gameObject.GetComponent<Rigidbody>().AddForce((direction + robotShootDirection) * throwForce, ForceMode.VelocityChange);
+        rb.AddForce((direction + robotShootDirection) * throwForce, ForceMode.VelocityChange);
     }
 
     private void OnCollisionEnter(Collision collision)
     {
+        AudioManager.Instance.PlayAudioClip(type);
         Explode();
     }
 
@@ -24,6 +26,7 @@ public class Grenades : Ammo
     {
         var explosion = Instantiate(explosioEffect, transform.position, Quaternion.identity) as GameObject;
         Collider[] colliders = Physics.OverlapSphere(transform.position, radius);
+        
         foreach (Collider collider in colliders)
         {
             Rigidbody rb = collider.GetComponent<Rigidbody>();
@@ -32,7 +35,7 @@ public class Grenades : Ammo
                 rb.AddExplosionForce(explosionForce, transform.position, explosionRadius);
             }
         }
-        Destroy(gameObject);
+        gameObject.SetActive(false);        
         Destroy(explosion, 2f);
     }
 }

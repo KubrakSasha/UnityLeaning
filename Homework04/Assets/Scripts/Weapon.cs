@@ -1,7 +1,11 @@
 using UnityEngine;
 public class Weapon : MonoBehaviour
 {
+//    private static Weapon instanse;
+//    public static Weapon Instance { get { return instanse; } }
+    
     [SerializeField] private GameObject weapon;
+    public AmmoType type;  
     public Ammo ammo;
 
     void Update()
@@ -14,10 +18,9 @@ public class Weapon : MonoBehaviour
         {
             
             //Ammo shell = Instantiate(ammo, weapon.transform.position, weapon.transform.rotation);
-            Ammo shell = BulletManager.Instance.GetAmmo();
+            Ammo shell = BulletManager.Instance.GetAmmo(type);
             shell.transform.position = weapon.transform.position;
             shell.transform.rotation = weapon.transform.rotation;
-
             shell.Fire(transform.right);
         }
     }

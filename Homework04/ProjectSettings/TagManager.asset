@@ -5,6 +5,12 @@ TagManager:
   serializedVersion: 2
   tags:
   - Shootable
+  - BallTag
+  - BulletTag
+  - GrenadeTag
+  - Bullet
+  - Grenade
+  - Ball
   layers:
   - Default
   - TransparentFX

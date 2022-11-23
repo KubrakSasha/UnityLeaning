@@ -1,14 +1,13 @@
 using UnityEngine;
 
 public class OnTriggerBulletChange : MonoBehaviour
-{
-    [SerializeField] Ammo ammoprefab;
+{    
+    [SerializeField] AmmoType ammoptype;
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.TryGetComponent(out Weapon weapon))
-        {
-            weapon.ammo = this.ammoprefab;
-        }
+        if (other.CompareTag("Player"))
+            other.GetComponent<Weapon>().type = ammoptype;
     }
+    
 }
