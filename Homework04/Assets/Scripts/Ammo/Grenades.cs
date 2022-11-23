@@ -9,8 +9,6 @@ public class Grenades : Ammo
     float radius = 5f;
     float explosionRadius = 5f;
     float explosionForce = 1000f;
-    AmmoType type = AmmoType.grenade;
-
     public override void Fire(Vector3 robotShootDirection)
     {
         rb.AddForce((direction + robotShootDirection) * throwForce, ForceMode.VelocityChange);
@@ -35,7 +33,8 @@ public class Grenades : Ammo
                 rb.AddExplosionForce(explosionForce, transform.position, explosionRadius);
             }
         }
-        gameObject.SetActive(false);        
+        gameObject.SetActive(false);
+        BulletManager.Instance.ReturnToContainer(this);
         Destroy(explosion, 2f);
     }
 }

@@ -3,7 +3,7 @@ using UnityEngine;
 public class Ball : Ammo
 {
     [SerializeField] GameObject bounceEffectPrefab;
-    AmmoType type = AmmoType.ball;
+    int collisionsCount = 0;    
     float velocity = 10f;
 
     public override void Fire(Vector3 robotShootDirection)
@@ -12,10 +12,16 @@ public class Ball : Ammo
     }
     private void OnCollisionEnter(Collision collision)
     {
-        AudioManager.Instance.PlayAudioClip(type);
-
-        gameObject.SetActive(false);
-        //var effect = Instantiate(bounceEffectPrefab, collision.contacts[0].point, Quaternion.identity) as GameObject;
-        //Destroy(effect, 0.5f);
+        collisionsCount++;
+        AudioManager.Instance.PlayAudioClip(type);       
+        if (collisionsCount > 2)
+        {            
+            gameObject.SetActive(false);
+            collisionsCount = 0;
+            BulletManager.Instance.ReturnToContainer(this);
+        }
+        
+        var effect = Instantiate(bounceEffectPrefab, collision.contacts[0].point, Quaternion.identity) as GameObject;
+        Destroy(effect, 0.5f);
     }
 }

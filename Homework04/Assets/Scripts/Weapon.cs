@@ -15,9 +15,7 @@ public class Weapon : MonoBehaviour
     public void Shoot()
     {
         if (Input.GetMouseButtonDown(0))
-        {
-            
-            //Ammo shell = Instantiate(ammo, weapon.transform.position, weapon.transform.rotation);
+        {           
             Ammo shell = BulletManager.Instance.GetAmmo(type);
             shell.transform.position = weapon.transform.position;
             shell.transform.rotation = weapon.transform.rotation;

@@ -3,6 +3,7 @@ using UnityEngine;
 public abstract class Ammo : MonoBehaviour
 {
     protected Rigidbody rb;
+    public AmmoType type;
    
         
     public void Awake()
